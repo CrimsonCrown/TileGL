@@ -55,6 +55,10 @@ namespace TileGL{
 		void load(TileCode tile, int spotx, int spoty) throw(std::invalid_argument);
 		//draws matrix to fill screen of size amountx,amounty from the start tile (x,y)
         void draw(double xfarleft, double yfarup, int amountx, int amounty, const TileSet &drawset) const;
+        //draws map on screen centered at position (x,y)
+        void draw_centered(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const;
+        //draws map on screen centered at tile (x,y)
+        void draw_tile_centered(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const;
 		//draws matrix to fill screen of size amountx,amounty from the start tile (x,y). BLANK will be ignored
         void draw_blank(int startx, int starty, int amountx, int amounty, const TileSet &drawset) const;
 	};

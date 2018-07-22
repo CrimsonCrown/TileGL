@@ -145,16 +145,37 @@ void TileGL::TileMap::draw(double xfarleft, double yfarup, int amountx, int amou
 		}
 	}
 }
-//draws matrix to fill screen of size amountx,amounty from the start tile (x,y). BLANK will be ignored
-void TileGL::TileMap::draw_blank(int startx, int starty, int amountx, int amounty, const TileSet &drawset) const{
+
+void TileGL::TileMap::draw_centered(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
 	int tsize = drawset.tile_size();
-	int endx = (amountx / tsize) + 1;
-	int endy = (amounty / tsize) + 1;
-	int i,j;
-	for (i=0;i<endy;i++){
-		for (j=0;j<endx;j++){
-			if ((map[((starty + i)*sizex) + (startx + j)].code!=TileCode::BLANK.code)&&((starty + i)>=0)&&((startx + j)>=0)&&((starty + i)<sizey)&&((startx + j)<sizex)){
-				drawset.draw(map[((starty + i)*sizex) + (startx + j)], tsize * j, tsize * i, zpos);
+	double xin = xcenter-((amountx/2)/tsize);
+	double yin = ycenter-((amounty/2)/tsize);
+	draw(xin,yin,amountx,amounty,drawset);
+}
+
+void TileGL::TileMap::draw_tile_centered(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
+	int tsize = drawset.tile_size();
+	double xin = (xcenter-((amountx/2)/tsize))+0.5;
+	double yin = (ycenter-((amounty/2)/tsize))+0.5;
+	draw(xin,yin,amountx,amounty,drawset);
+}
+
+//draws matrix to fill screen of size amountx,amounty from the start tile (x,y). BLANK will be ignored
+void TileGL::TileMap::draw_blank(int xfarleft, int yfarup, int amountx, int amounty, const TileSet &drawset) const{
+	int tsize = drawset.tile_size();
+	double xin = xfarleft-offsetx;
+	double yin = yfarup-offsety;
+	int starttilex = floor(xin);
+	int starttiley = floor(yin);
+	int startpixelx = 0 - (tsize * (xin - starttilex));
+	int startpixely = 0 - (tsize * (yin - starttiley));
+	int endpixelx = (amountx-1);
+	int endpixely = (amounty-1);
+	int i,j,it,jt;
+	for (({i=startpixely;it=starttiley;});i<endpixely;({i+=tsize;it++;})){
+		for (({j=startpixelx;jt=starttilex;});j<endpixelx;({j+=tsize;jt++;})){
+			if ((it>=0)&&(jt>=0)&&(it<sizey)&&(jt<sizex)&&(map[(it*sizex) + jt].code!=TileCode::BLANK.code)){
+				drawset.draw(map[(it*sizex) + jt], j, i, zpos);
 			}
 		}
 	}
