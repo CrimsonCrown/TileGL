@@ -10,8 +10,8 @@ class MyWindow : public Gosu::Window
   TileGL::TileSet mytilelib;
   TileGL::TileMap mytilemap;
   uint8_t tryer = 0xFF;
-  int posx;
-  int posy;
+  double posx;
+  double posy;
 public:
   MyWindow()
   : Gosu::Window(640, 480) , mytilelib("settest"), mytilemap("maptest")
@@ -22,16 +22,16 @@ public:
   }
   void update() override{
     if (Gosu::Input::down(Gosu::KB_LEFT) || Gosu::Input::down(Gosu::GP_LEFT)) {
-      posx-=1;
+      posx-=0.03125;
     }
     if (Gosu::Input::down(Gosu::KB_RIGHT) || Gosu::Input::down(Gosu::GP_RIGHT)) {
-      posx+=1;
+      posx+=0.03125;
     }
     if (Gosu::Input::down(Gosu::KB_UP) || Gosu::Input::down(Gosu::GP_UP)) {
-      posy-=1;
+      posy-=0.03125;
     }
     if (Gosu::Input::down(Gosu::KB_DOWN) || Gosu::Input::down(Gosu::GP_DOWN)) {
-      posy+=1;
+      posy+=0.03125;
     }
   }
 

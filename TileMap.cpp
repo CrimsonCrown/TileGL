@@ -126,15 +126,21 @@ std::string TileGL::TileMap::helper_oobexcept(int x, int y){
 	return returnstatement;
 }
 //draws matrix to fill screen of size amountx,amounty from the start tile (x,y)
-void TileGL::TileMap::draw(int startx, int starty, int amountx, int amounty, const TileSet &drawset) const{
+void TileGL::TileMap::draw(double xfarleft, double yfarup, int amountx, int amounty, const TileSet &drawset) const{
 	int tsize = drawset.tile_size();
-	int endx = (amountx / tsize) + 1;
-	int endy = (amounty / tsize) + 1;
-	int i,j;
-	for (i=0;i<endy;i++){
-		for (j=0;j<endx;j++){
-			if (((starty + i)>=0)&&((startx + j)>=0)&&((starty + i)<sizey)&&((startx + j)<sizex)){
-				drawset.draw(map[((starty + i)*sizex) + (startx + j)], tsize * j, tsize * i, zpos);
+	double xin = xfarleft-offsetx;
+	double yin = yfarup-offsety;
+	int starttilex = floor(xin);
+	int starttiley = floor(yin);
+	int startpixelx = 0 - (tsize * (xin - starttilex));
+	int startpixely = 0 - (tsize * (yin - starttiley));
+	int endpixelx = (amountx-1);
+	int endpixely = (amounty-1);
+	int i,j,it,jt;
+	for (({i=startpixely;it=starttiley;});i<endpixely;({i+=tsize;it++;})){
+		for (({j=startpixelx;jt=starttilex;});j<endpixelx;({j+=tsize;jt++;})){
+			if (((it)>=0)&&((jt)>=0)&&((it)<sizey)&&((jt)<sizex)){
+				drawset.draw(map[(it*sizex) + jt], j, i, zpos);
 			}
 		}
 	}
