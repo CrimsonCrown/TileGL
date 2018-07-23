@@ -161,7 +161,7 @@ void TileGL::TileMap::draw_tile_centered(double xcenter, double ycenter, int amo
 }
 
 //draws matrix to fill screen of size amountx,amounty from the start tile (x,y). BLANK will be ignored
-void TileGL::TileMap::draw_blank(int xfarleft, int yfarup, int amountx, int amounty, const TileSet &drawset) const{
+void TileGL::TileMap::draw_blank(double xfarleft, double yfarup, int amountx, int amounty, const TileSet &drawset) const{
 	int tsize = drawset.tile_size();
 	double xin = xfarleft-offsetx;
 	double yin = yfarup-offsety;
@@ -174,9 +174,23 @@ void TileGL::TileMap::draw_blank(int xfarleft, int yfarup, int amountx, int amou
 	int i,j,it,jt;
 	for (({i=startpixely;it=starttiley;});i<endpixely;({i+=tsize;it++;})){
 		for (({j=startpixelx;jt=starttilex;});j<endpixelx;({j+=tsize;jt++;})){
-			if ((it>=0)&&(jt>=0)&&(it<sizey)&&(jt<sizex)&&(map[(it*sizex) + jt].code!=TileCode::BLANK.code)){
+			if (((it)>=0)&&((jt)>=0)&&((it)<sizey)&&((jt)<sizex)&&(map[(it*sizex) + jt].code!=TileCode::BLANK.code)){
 				drawset.draw(map[(it*sizex) + jt], j, i, zpos);
 			}
 		}
 	}
+}
+
+void TileGL::TileMap::draw_centered_blank(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
+	int tsize = drawset.tile_size();
+	double xin = xcenter-((amountx/2)/tsize);
+	double yin = ycenter-((amounty/2)/tsize);
+	draw_blank(xin,yin,amountx,amounty,drawset);
+}
+
+void TileGL::TileMap::draw_tile_centered_blank(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
+	int tsize = drawset.tile_size();
+	double xin = (xcenter-((amountx/2)/tsize))+0.5;
+	double yin = (ycenter-((amounty/2)/tsize))+0.5;
+	draw_blank(xin,yin,amountx,amounty,drawset);
 }

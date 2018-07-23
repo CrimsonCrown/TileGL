@@ -60,6 +60,10 @@ namespace TileGL{
         //draws map on screen centered at tile (x,y)
         void draw_tile_centered(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const;
 		//draws matrix to fill screen of size amountx,amounty from the start tile (x,y). BLANK will be ignored
-        void draw_blank(int startx, int starty, int amountx, int amounty, const TileSet &drawset) const;
+        void draw_blank(double startx, double starty, int amountx, int amounty, const TileSet &drawset) const;
+        //draws map on screen centered at position (x,y). BLANK will be ignored
+        void draw_centered_blank(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const;
+        //draws map on screen centered at tile (x,y). BLANK will be ignored
+        void draw_tile_centered_blank(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const;
 	};
 }

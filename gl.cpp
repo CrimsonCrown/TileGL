@@ -39,7 +39,7 @@ public:
   }
 
   void draw() override{
-    mytilemap.draw_tile_centered(posx, posy, 640, 480, mytilelib);
+    mytilemap.draw_tile_centered_blank(posx, posy, 640, 480, mytilelib);
     mycursor.draw(316,236,5);
   }
 };
