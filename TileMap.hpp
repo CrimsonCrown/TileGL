@@ -17,7 +17,7 @@ namespace TileGL{
 		TileCode * map;//the map built with codes for the tiles it is made of
 		int offsetx;//translates map horizontaly by x tiles (to append to other maps)
 		int offsety;//translates map verticaly by x tiles (to append to other maps)
-		int zpos; //position of this map in z axis
+		double zpos; //position of this map in z axis
 		int sizex; //x size of map (horizontal length)
 		int sizey; //y size of map (vertical length)
 		std::string filename;//name of file to be saved at
@@ -50,7 +50,7 @@ namespace TileGL{
 		//offsets the map on both axis
 		void offsets(int x, int y);
 		//sets the z position of the map
-		void setz(int z);
+		void setz(double z);
 		//loads tile of code (first parameter) on spot (x,y) on the map, throws if spot is out of bounds
 		void load(TileCode tile, int spotx, int spoty) throw(std::invalid_argument);
 		//draws matrix to fill screen of size amountx,amounty from the start tile (x,y)

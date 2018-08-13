@@ -107,7 +107,7 @@ void TileGL::TileMap::offsets(int x, int y){
 	offsety = y;
 }
 //sets the z position of the map
-void TileGL::TileMap::setz(int z){
+void TileGL::TileMap::setz(double z){
 	zpos = z;
 }
 //loads tile of code (first parameter) on spot (x,y) on the map, throws if spot is out of bounds
