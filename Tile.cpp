@@ -20,7 +20,7 @@ bool TileGL::Tile::is_loaded() const{
 }
 
 void TileGL::Tile::load(const std::string& name, int size) throw(std::invalid_argument){
-    data = new Gosu::Image(name, Gosu::IF_TILEABLE);
+    data = new Gosu::Image(name, Gosu::IF_RETRO);
     if ((data->width()!= size)||(data->height() != size)){
     	delete data;
     	data = nullptr;
