@@ -148,15 +148,15 @@ void TileGL::TileMap::draw(double xfarleft, double yfarup, int amountx, int amou
 
 void TileGL::TileMap::draw_centered(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
 	int tsize = drawset.tile_size();
-	double xin = xcenter-((amountx/2)/tsize);
-	double yin = ycenter-((amounty/2)/tsize);
+	double xin = xcenter-((amountx/2.0)/tsize);
+	double yin = ycenter-((amounty/2.0)/tsize);
 	draw(xin,yin,amountx,amounty,drawset);
 }
 
 void TileGL::TileMap::draw_tile_centered(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
 	int tsize = drawset.tile_size();
-	double xin = (xcenter-((amountx/2)/tsize))+0.5;
-	double yin = (ycenter-((amounty/2)/tsize))+0.5;
+	double xin = (xcenter-((amountx/2.0)/tsize))+0.5;
+	double yin = (ycenter-((amounty/2.0)/tsize))+0.5;
 	draw(xin,yin,amountx,amounty,drawset);
 }
 
@@ -183,14 +183,14 @@ void TileGL::TileMap::draw_blank(double xfarleft, double yfarup, int amountx, in
 
 void TileGL::TileMap::draw_centered_blank(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
 	int tsize = drawset.tile_size();
-	double xin = xcenter-((amountx/2)/tsize);
-	double yin = ycenter-((amounty/2)/tsize);
+	double xin = xcenter-((amountx/2.0)/tsize);
+	double yin = ycenter-((amounty/2.0)/tsize);
 	draw_blank(xin,yin,amountx,amounty,drawset);
 }
 
 void TileGL::TileMap::draw_tile_centered_blank(double xcenter, double ycenter, int amountx, int amounty, const TileSet &drawset) const{
 	int tsize = drawset.tile_size();
-	double xin = (xcenter-((amountx/2)/tsize))+0.5;
-	double yin = (ycenter-((amounty/2)/tsize))+0.5;
+	double xin = (xcenter-((amountx/2.0)/tsize))+0.5;
+	double yin = (ycenter-((amounty/2.0)/tsize))+0.5;
 	draw_blank(xin,yin,amountx,amounty,drawset);
 }
